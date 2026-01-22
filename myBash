@@ -1,0 +1,32 @@
+
+#!/bin/bash
+
+while getopts f:n:c: option
+do 
+    case "${option}"
+        in
+        f)files=${OPTARG};;
+        n)name=${OPTARG};;
+        c)clear=${OPTARG};;
+    esac
+done
+
+
+i=files
+
+echo "I is ${i}"
+echo "name is ${name}"
+while [[ $i -le 10 ]] ; do
+	echo "$i"
+	mkdir "${i} ${name}"
+	(( i += 1 ))
+done
+
+
+j=files
+if [ $(clear) = 1 ]; then
+while [[ $j -le 10 ]] ; do
+	rmdir "${j} ${name}"
+	(( j += 1 ))
+done
+fi
